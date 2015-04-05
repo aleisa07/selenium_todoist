@@ -1,0 +1,16 @@
+<?suites version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MashapeTest">
+    <test name="MashapeTest">
+        <classes>
+            <class name="mashape.LoginTest"/>
+            <class name="mashape.AddProjectColorTest"/>
+            <class name="mashape.AddTaskTest"/>
+            <class name="mashape.DeleteProjectTest"/>
+            <class name="mashape.EditAccountSettingTest"/>
+            <class name="mashape.EditProjectTest"/>
+            <class name="mashape.LogoutTest"/>
+        </classes>
+    </test>
+</suite>
+

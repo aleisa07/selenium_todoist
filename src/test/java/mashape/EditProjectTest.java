@@ -22,6 +22,7 @@ public class EditProjectTest {
     ContainerAddProject containerAddProject;
     ContextMenuSettings contextMenuSettings;
     ModalDeleteProject modalDeleteProject;
+    ContainerEditProject containerEditProject;
 
     @BeforeMethod
     public void setUp() {
@@ -31,7 +32,7 @@ public class EditProjectTest {
 
         containerAddProject = dashboard.ClickAddProjectLbl();
         containerAddProject.setProjectName(projectName);
-        containerAddProject.ClickSelectColorProject();
+        containerAddProject.selectProjectColor("ORANGE");
         containerAddProject.clickAddProjectBtn();
 
     }
@@ -39,19 +40,18 @@ public class EditProjectTest {
     @Test
     public void EditProjectTest() throws Exception {
 
-        ContainerEditProject containerEditProject = dashboard.ClickEditProject(projectName);
+        containerEditProject = dashboard.ClickEditProject(projectName);
         containerEditProject.setProjectName(newNameProject);
-        containerEditProject.ClickSelectColorProject();
+        containerEditProject.selectProjectColor("LIGHGREEN");
         containerEditProject.clickSaveProjectBtn();
 
-        Thread.sleep(2000);
         Assert.assertTrue(Commons.isElementPresent(By.xpath("//tr[contains(., '" + newNameProject +"')]")));
 
       }
 
     @AfterClass
     public void tearDown() throws Exception {
-        Thread.sleep(1000);
+
         modalDeleteProject = dashboard.ClickDeleteProject(newNameProject);
         modalDeleteProject.clickDeleteProjectBtn();
     }

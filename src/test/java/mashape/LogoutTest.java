@@ -22,7 +22,7 @@ public class LogoutTest {
 
     @BeforeMethod
     public void setUp() {
-        Home homepage = new Home();
+        homepage = new Home();
         dashboard = homepage.loginAs(expectedemail, password);
     }
 
@@ -32,8 +32,8 @@ public class LogoutTest {
 
         contextMenuSettings = dashboard.clickSettings();
         contextMenuSettings.clickLogoutMenu();
-
-        Assert.assertFalse(dashboard.isLblProjectDisplayed());
+        Assert.assertTrue(homepage.isLoginDisplayed());
+        dashboard.CloseConnection();
 
     }
 

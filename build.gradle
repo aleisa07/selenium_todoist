@@ -12,6 +12,8 @@ repositories {
 dependencies {
     compile 'org.testng:testng:6.8.21'
     compile 'org.seleniumhq.selenium:selenium-java:2.45.0'
+    compile 'org.uncommons:reportng:1.1.4'
+    compile 'com.google.inject:guice:3.0'
 
 //    compile fileTree(dir: './lib')
 }
@@ -24,11 +26,48 @@ task copyToLib(type: Copy) {
 task runTestCases(type: Test) {
     useTestNG()
 
+    delete 'reports'
+
+    File file = new File('reports/html/screenshot')
+    file.mkdirs()
+
     testLogging {
-        events "started", "passed", "skipped", "failed"
+        events "started", "passed", "skipped", "failed", "standardOut"
     }
 
+    File[] suitesFiles = splitSuites(suites)
+
     options {
-        suites("src/test/resources/Suite.xml")
+        useDefaultListeners = false
+
+        suites(suitesFiles)
+
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+
+        listeners << 'framework.testng.TestListener'
+        listeners << 'framework.testng.SuiteListener'
     }
+
+    systemProperties.put('browser', browser)
+    systemProperties.put('username', username)
+    systemProperties.put('userpassword', userpassword)
+    systemProperties.put('org.uncommons.reportng.escape-output', 'false')
+    systemProperties.put('org.uncommons.reportng.title', 'Selenium Course Example')
+
+    reports.html.enabled = false
+    reports.html.destination = 'reports'
+}
+
+def File[] splitSuites(String suites)
+{
+    String[] listSuites = suites.split(",")
+    int counter = 0
+    File[] suitesFiles = new File[listSuites.length]
+
+    listSuites.each { String item ->
+        suitesFiles[counter] = new File(suitePath + item.trim())
+        counter++
+    }
+    return suitesFiles
 }

@@ -50,4 +50,9 @@ public class Home {
     }
 
 
+    public boolean isLoginDisplayed() {
+        return Commons.isElementPresent(loginLink);
+    }
+
+
 }

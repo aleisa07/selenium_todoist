@@ -18,6 +18,7 @@ public class AddProjectColorTest {
     ContextMenuSettings contextMenuSettings;
     ModalDeleteProject modalDeleteProject;
     String color= "rgb(255, 196, 113)";
+    ContainerAddProject containerAddProject;
 
 
     @BeforeMethod
@@ -28,11 +29,12 @@ public class AddProjectColorTest {
 
         Home homepage = new Home();
         dashboard = homepage.loginAs(expectedemail, password);
+
     }
 
     @Test
     public void AddProjectColor() throws Exception {
-        ContainerAddProject containerAddProject = dashboard.ClickAddProjectLbl();
+        containerAddProject = dashboard.ClickAddProjectLbl();
         containerAddProject.setProjectName(expectedProjectName);
         containerAddProject.selectProjectColor("ORANGE");
         containerAddProject.clickAddProjectBtn();
@@ -43,10 +45,10 @@ public class AddProjectColorTest {
 
     @AfterClass
     public void tearDown() throws Exception {
-        Thread.sleep(1000);
+
         modalDeleteProject = dashboard.ClickDeleteProject(expectedProjectName);
         modalDeleteProject.clickDeleteProjectBtn();
-        Thread.sleep(1000);
+
 
     }
 

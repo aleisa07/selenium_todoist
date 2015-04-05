@@ -32,7 +32,7 @@ public class AddTaskTest {
         dashboard = homepage.loginAs(expectedemail, password);
         containerAddProject = dashboard.ClickAddProjectLbl();
         containerAddProject.setProjectName(expectedProjectName);
-        containerAddProject.ClickSelectColorProject();
+        containerAddProject.selectProjectColor("orange");
         containerAddProject.clickAddProjectBtn();
 
     }
@@ -40,17 +40,13 @@ public class AddTaskTest {
     @Test
     public void AddTaskTest() throws Exception {
 
-        Thread.sleep(1000);
         addTaskContainer = containerAddProject.clickOverProject(expectedProjectName);
         addTaskContainer.ClickAddTask();
         addTaskContainer.setNameTask(taskName);
         addTaskContainer.clickSaveBtn();
         contextMenuTask = addTaskContainer.clickSubMenu(taskName);
-        Thread.sleep(1000);
         contextMenuTask.SelectPriority2();
-        //ContextMenuTask contextMenuTask1 = addTaskContainer.clickSubMenu();
-        //Thread.sleep(1000);
-        //contextMenuTask1.ClickDeleteTaskMenu();
+
 
        Assert.assertTrue(addTaskContainer.isTaskDisplayed(taskName));
 
@@ -58,14 +54,10 @@ public class AddTaskTest {
 
     @AfterClass
     public void tearDown() throws Exception {
-        //contextMenuSettings = dashboard.clickSettings();
-        //contextMenuSettings.clickLogoutMenu();
-        Thread.sleep(1000);
-        //contextMenuSettings = dashboard.clickSettings();
-        //contextMenuSettings.clickLogoutMenu();
+
         modalDeleteProject = dashboard.ClickDeleteProject(expectedProjectName);
         modalDeleteProject.clickDeleteProjectBtn();
-        Thread.sleep(1000);
+
     }
 
 

@@ -1,4 +1,4 @@
-package framework.utils;
+package framework.selenium;
 
 public class Constants {
 

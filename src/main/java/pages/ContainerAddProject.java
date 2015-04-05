@@ -17,7 +17,6 @@ public class ContainerAddProject {
     private By AddProjectTxt = By.xpath("//textarea[contains(@placeholder,'Project name')]");
     private By ColorSelectorrBtn = By.id("color_selector");
     private By AddProjectBtn = By.xpath("//span[contains(.,'Add Project')]");
-    private By specificColor = By.xpath("html/body/div[6]/table/tbody/tr/td/ul/li/a[1]/img");
 
 
     public ContainerAddProject(WebDriver driver)
@@ -31,29 +30,26 @@ public class ContainerAddProject {
     {
         driver.findElement(AddProjectTxt).clear();
         driver.findElement(AddProjectTxt).sendKeys(project_name);
-
     }
 
-    public void ClickSelectColorProject()
-    {
-
-        driver.findElement(ColorSelectorrBtn).click();
-        driver.findElement(specificColor).click();
-
-    }
 
     public void clickAddProjectBtn()
     {
+       try{
 
         driver.findElement(AddProjectBtn).click();
-
+        Thread.sleep(1000);
+       }
+       catch (Exception e)
+       {
+           System.out.print("Exception for Click Add ProjectBtn");
+       }
     }
 
     public AddTaskContainer clickOverProject(String projectName) {
 
         driver.findElement(By.xpath("//tr/td[contains(., '" + projectName + "')]")).click();
         return new AddTaskContainer(driver);
-
     }
 
     public void selectProjectColor(String optionColor) {

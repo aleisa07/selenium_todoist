@@ -37,6 +37,7 @@ public class ContextMenuSettings {
          Thread.sleep(1000);
          driver.findElement(By.xpath("//td/div[contains(.,'Logout')]")).click();
             Thread.sleep(1000);
+
         }catch(Exception e)
         {
             System.out.print("Error on ClickLogoutMenu");

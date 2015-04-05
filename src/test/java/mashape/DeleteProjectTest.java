@@ -28,7 +28,7 @@ public class DeleteProjectTest {
         dashboard = homepage.loginAs(expectedemail, password);
         containerAddProject = dashboard.ClickAddProjectLbl();
         containerAddProject.setProjectName(expectedProjectName);
-        containerAddProject.ClickSelectColorProject();
+        containerAddProject.selectProjectColor("ORANGE");
         containerAddProject.clickAddProjectBtn();
 
     }
@@ -37,7 +37,6 @@ public class DeleteProjectTest {
     public void DeleteProjectTest() throws Exception {
         modalDeleteProject = dashboard.ClickDeleteProject(expectedProjectName);
         modalDeleteProject.clickDeleteProjectBtn();
-        Thread.sleep(1000);
 
          Assert.assertFalse(dashboard.isProjectDisplayed(expectedProjectName));
 

@@ -22,6 +22,8 @@ public class AddTaskContainer {
     WebDriver driver;
     WebDriverWait wait;
     private By AddTaskLink = By.xpath("//a[contains(text(),'Add Task')]");
+    private By taskNameTxt = By.xpath("//textarea[@name='ta']");
+    private By addTaskBtn = By.xpath("//span[contains(.,'Add Task')]");
 
 
     public AddTaskContainer(WebDriver driver)
@@ -39,12 +41,12 @@ public class AddTaskContainer {
 
     public void setNameTask(String taskName)
     {
-        driver.findElement(By.xpath("//textarea[@name='ta']")).sendKeys(taskName);
+        driver.findElement(taskNameTxt).sendKeys(taskName);
     }
 
     public void clickSaveBtn()
     {
-        driver.findElement(By.xpath("//span[contains(.,'Add Task')]")).click();
+        driver.findElement(addTaskBtn).click();
 
     }
 

@@ -33,7 +33,7 @@ public class DeleteTaskTest {
 
         containerAddProject = dashboard.ClickAddProjectLbl();
         containerAddProject.setProjectName(expectedProjectName);
-        containerAddProject.ClickSelectColorProject();
+        containerAddProject.selectProjectColor("ORANGE");
         containerAddProject.clickAddProjectBtn();
     }
 
@@ -45,7 +45,7 @@ public class DeleteTaskTest {
         addTaskContainer.clickSaveBtn();
         contextMenuTask = addTaskContainer.clickSubMenu(taskName);
         contextMenuTask.ClickDeleteTaskMenu();
-        Thread.sleep(1000);
+
 
         Assert.assertFalse(addTaskContainer.isTaskDisplayed(taskName));
     }
@@ -53,9 +53,7 @@ public class DeleteTaskTest {
 
     @AfterClass
     public void tearDown() throws Exception {
-        Thread.sleep(1000);
-        //contextMenuSettings = dashboard.clickSettings();
-        //contextMenuSettings.clickLogoutMenu();
+
         modalDeleteProject = dashboard.ClickDeleteProject(expectedProjectName);
         modalDeleteProject.clickDeleteProjectBtn();
 

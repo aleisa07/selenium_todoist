@@ -13,7 +13,7 @@ public class ContextMenuTask {
 
     WebDriver driver;
     WebDriverWait wait;
-    private By priority2 = By.xpath("html/body/div[12]/table/tbody/tr[6]/td/ul/li[2]/a[3]/img");
+    private By priority2 = By.cssSelector("img.cmp_priority2");
     private By deleteTaskMenu = By.xpath("//td/div[contains(.,'Delete task')]");
 
 
@@ -32,9 +32,15 @@ public class ContextMenuTask {
 
     public void ClickDeleteTaskMenu()
     {
+        try{
      driver.findElement(deleteTaskMenu).click();
+     Thread.sleep(1000);
 
 
+        }
+        catch (Exception e){
+            System.out.print("exception to click delete Task Menu");
+        }
     }
 
 

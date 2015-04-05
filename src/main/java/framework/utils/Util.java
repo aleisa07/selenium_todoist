@@ -13,7 +13,4 @@ public class Util {
         return simpleDateFormat.format(date);
     }
 
-
-
-
 }

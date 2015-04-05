@@ -69,6 +69,7 @@ public class Dashboard {
 
         try
         {
+            Thread.sleep(1000);
             WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[contains(., '"+ nameProject +"')]")));
             Action action = new Actions(driver).moveToElement(webElement).build();
             action.perform();
@@ -102,6 +103,11 @@ public class Dashboard {
 
     public boolean isProjectDisplayed(String projectName) {
         return Commons.isElementPresent(By.xpath("//tr[contains(., '"+ projectName +"')]"));
+    }
+
+    public void CloseConnection()
+    {
+        driver.quit();
     }
 
 }
